@@ -7,13 +7,7 @@ require "binding_of_caller"
 #BetterErrors:Middleware.allow_ip!('0.0.0.0/0.0.0.0')
 
 get("/") do
-  "<h1>Dice Roll</h1>
-   <ul>
-    <li><a href=\"/dice/2/6\"><h2>Roll two 6-sided dice</h2></a></li>
-    <li><a href=\"/dice/2/10\"><h2>Roll two 10-sided dice</h2></a></li>
-    <li><a href=\"/dice/1/20\"><h2>Roll one 20-sided dice</h2></a></li>
-    <li><a href=\"/dice/5/4\"><h2>Roll five 4-sided dice</h2></a></li>
-   </ul>"
+  erb(:elephant)
 end
 
 get("/zebra") do
@@ -28,11 +22,9 @@ get("/dice/2/6") do
   first_die = rand(1..6)
   second_die = rand(1..6)
   sum = first_die + second_die
-	
-  outcome = "You rolled a #{first_die} and a #{second_die} for a total of #{sum}."
-	
-  "<h1>2d6</h1>
-   <p>#{outcome}</p>"
+
+  @outcome = "You rolled a #{first_die} and a #{second_die} for a total of #{sum}."
+  erb(:two_six)
 end
 
 get("/dice/2/10") do
