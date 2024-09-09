@@ -38,9 +38,9 @@ get("/dice/2/10") do
 end
 
 get("/dice/1/20") do
-  first_die = rand(1..20)
+  @die = rand(1..20)
 	
-  @outcome = "You rolled a #{first_die}."
+  @outcome = "You rolled a #{@die}."
 	
   erb(:one_twenty, {:layout => :wrapper})
   
@@ -58,4 +58,16 @@ get("/dice/5/4") do
 	
   erb(:five_four, {:layout => :wrapper})
 
+end
+
+get("/dice/100/6") do
+  @rolls = []   
+
+  100.times do    
+    die = rand(1..6)    
+
+    @rolls.push(die)   
+  end
+
+  erb(:one_hundred_six)
 end
